@@ -1,0 +1,15 @@
+{
+    "name": "user/testbee",
+    "description": "Test beejee",
+    "authors": [
+        {
+            "name": "kas-cor",
+            "email": "kascorp@gmail.com"
+        }
+    ],
+    "require": {
+        "twbs/bootstrap": "^4.2",
+        "components/jquery": "*",
+        "doctrine/orm": "^2.6.2"
+    }
+}
