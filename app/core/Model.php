@@ -45,7 +45,7 @@ class Model extends Sorting {
         return $repo->findBy($criteria, $order);
     }
 
-    static function pagination($criteria = [], $order = [], $page = 0) {
+    static function pagination($criteria = [], $order = [], $page = 1) {
         $repo = self::getEm()->getRepository(get_called_class());
         $query = $repo->createQueryBuilder('t');
         foreach ($criteria as $column => $value) {

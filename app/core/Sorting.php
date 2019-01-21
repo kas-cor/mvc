@@ -32,7 +32,7 @@ class Sorting {
     }
 
     static function getSorts() {
-        return $_SESSION['ordering'][get_called_class()];
+        return $_SESSION['ordering'][get_called_class()] ?: [];
     }
 
     static function sortingWidget($title, $column, $path) {
