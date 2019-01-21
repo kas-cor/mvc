@@ -4,7 +4,8 @@ namespace app\controllers;
 
 use app\App;
 use app\models\Tasks;
-use app\core\Alerts;
+use app\widgets\Alerts;
+use app\widgets\Sorting;
 
 class MainController extends \app\core\Controller {
 
@@ -38,7 +39,7 @@ class MainController extends \app\core\Controller {
             }
         }
 
-        $pagination = Tasks::pagination([], Tasks::getSorts(), $get['page']);
+        $pagination = Tasks::pagination([], Sorting::getSorts(Tasks::className()), $get['page']);
 
         return $this->render('index', [
                     'title' => 'Задачи',
@@ -49,7 +50,7 @@ class MainController extends \app\core\Controller {
 
     public function sortAction() {
         if ($get = App::$request['get']) {
-            Tasks::setSortToggle($get['column']);
+            Sorting::setSortToggle(Tasks::className(), $get['column']);
         }
 
         return $this->redirect('/');

@@ -1,10 +1,11 @@
 <?php
 
-namespace app\core;
+namespace app\widgets;
 
 use app\App;
+use app\core\Widget;
 
-class Paginations {
+class Paginations extends Widget {
 
     static function widget($pagination) {
         $length = App::$components['db']['paginations'];

@@ -1,6 +1,6 @@
 {
-    "name": "user/testbee",
-    "description": "Test beejee",
+    "name": "mvc_pattern",
+    "description": "MVC Pattern",
     "authors": [
         {
             "name": "kas-cor",

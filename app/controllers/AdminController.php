@@ -4,8 +4,9 @@ namespace app\controllers;
 
 use app\App;
 use app\models\Users;
-use app\core\Alerts;
+use app\widgets\Alerts;
 use app\models\Tasks;
+use app\widgets\Sorting;
 
 class AdminController extends \app\core\Controller {
 
@@ -54,7 +55,7 @@ class AdminController extends \app\core\Controller {
             Alerts::addFlash(Alerts::TYPE_SUCCESS, 'Изменения сохранены!');
         }
 
-        $pagination = Tasks::pagination([], Tasks::getSorts(), $get['page']);
+        $pagination = Tasks::pagination([], Sorting::getSorts(Tasks::className()), $get['page']);
 
         return $this->render('index', [
                     'title' => 'Админка',

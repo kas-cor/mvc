@@ -1,6 +1,6 @@
 <?php
 
-namespace app\core;
+namespace app\widgets;
 
 class Alerts {
 

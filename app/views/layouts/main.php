@@ -1,7 +1,7 @@
 <?php
 
 use app\core\Assets;
-use app\core\Alerts;
+use app\widgets\Alerts;
 use app\models\Users;
 
 $current_controller = app\App::$components['routes']['controller'];

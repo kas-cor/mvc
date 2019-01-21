@@ -1,18 +1,19 @@
 <?php
 
 use app\models\Tasks;
-use app\core\Paginations;
+use app\widgets\Paginations;
+use app\widgets\Sorting;
 ?>
 <form action="" method="POST">
     <table class="table">
         <thead>
             <tr>
-                <th><?php Tasks::sortingWidget('ID', 'id', '/main/sort') ?></th>
-                <th><?php Tasks::sortingWidget('Имя', 'name', '/main/sort') ?></th>
-                <th><?php Tasks::sortingWidget('e-mail', 'email', '/main/sort') ?></th>
+                <th><?php Sorting::widget(Tasks::className(), 'ID', 'id', '/main/sort') ?></th>
+                <th><?php Sorting::widget(Tasks::className(), 'Имя', 'name', '/main/sort') ?></th>
+                <th><?php Sorting::widget(Tasks::className(), 'e-mail', 'email', '/main/sort') ?></th>
                 <th>Текст</th>
-                <th><?php Tasks::sortingWidget('Статус', 'status', '/main/sort') ?></th>
-                <th><?php Tasks::sortingWidget('Создан', 'created_at', '/main/sort') ?></th>
+                <th><?php Sorting::widget(Tasks::className(), 'Статус', 'status', '/main/sort') ?></th>
+                <th><?php Sorting::widget(Tasks::className(), 'Создан', 'created_at', '/main/sort') ?></th>
             </tr>
         </thead>
         <tbody>

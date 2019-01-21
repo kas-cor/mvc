@@ -5,7 +5,7 @@ namespace app\core;
 use app\App;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
-class Model extends Sorting {
+class Model {
 
     public function save() {
         $entityManager = self::getEm();
@@ -68,6 +68,10 @@ class Model extends Sorting {
             'total' => $total,
             'current' => $page,
         ];
+    }
+    
+    static function className() {
+        return get_called_class();
     }
 
 }
