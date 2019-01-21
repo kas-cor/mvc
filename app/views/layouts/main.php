@@ -4,7 +4,7 @@ use app\core\Assets;
 use app\core\Alerts;
 use app\models\Users;
 
-$cutrent_controller = app\App::$components['routes']['controller'];
+$current_controller = app\App::$components['routes']['controller'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,10 +24,10 @@ $cutrent_controller = app\App::$components['routes']['controller'];
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item <?= $cutrent_controller == 'main' ? 'active' : '' ?>">
+                        <li class="nav-item <?= $current_controller == 'main' ? 'active' : '' ?>">
                             <a class="nav-link" href="/">Задачи</a>
                         </li>
-                        <li class="nav-item <?= $cutrent_controller == 'admin' ? 'active' : '' ?>">
+                        <li class="nav-item <?= $current_controller == 'admin' ? 'active' : '' ?>">
                             <a class="nav-link" href="/admin">Админка</a>
                         </li>
                     </ul>
