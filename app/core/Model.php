@@ -13,7 +13,7 @@ class Model {
         $entityManager->flush();
         $entityManager->clear();
     }
-    
+
     static function getEm() {
         return App::$components['db']['em'];
     }
@@ -69,7 +69,7 @@ class Model {
             'current' => $page,
         ];
     }
-    
+
     static function className() {
         return get_called_class();
     }
