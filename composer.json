@@ -1,6 +1,6 @@
 {
   "name": "mvc/pattern",
-  "license": "",
+  "license": "MIT",
   "description": "MVC Pattern",
   "authors": [
     {
