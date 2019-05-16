@@ -3,21 +3,33 @@
 namespace app\controllers;
 
 use app\App;
+use app\core\Controller;
 use app\models\Users;
 use app\widgets\Alerts;
 use app\models\Tasks;
 use app\widgets\Sorting;
+use ErrorException;
 
-class AdminController extends \app\core\Controller {
+/**
+ * Class AdminController
+ * @package app\controllers
+ */
+class AdminController extends Controller {
 
+    /**
+     * Index action
+     * @return string
+     * @throws ErrorException
+     */
     public function indexAction() {
+        /** @var array $entry */
         if (!Users::isAuth()) {
             return $this->redirect('/admin/login');
         }
 
         $get = App::$request['get'];
         if ($post = App::$request['post']) {
-            // Revetr array
+            // Revert array
             foreach ($post as $column => $rows) {
                 foreach ($rows as $id => $value) {
                     $entry[$id][$column] = $value;
@@ -64,6 +76,11 @@ class AdminController extends \app\core\Controller {
         ]);
     }
 
+    /**
+     * Login action
+     * @return string
+     * @throws ErrorException
+     */
     public function loginAction() {
         if (Users::isAuth()) {
             return $this->redirect('/admin');
@@ -91,6 +108,10 @@ class AdminController extends \app\core\Controller {
         ]);
     }
 
+    /**
+     * Logout action
+     * @return void
+     */
     public function logoutAction() {
         Users::singOut();
 

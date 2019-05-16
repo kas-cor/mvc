@@ -1,5 +1,17 @@
+# IDE
+.idea
 nbproject
+
+# Vendor
 vendor
+
+# Config
 config/db.php
+phinx.yml
+
+# Composer
+composer.phar
+
+# Others
 dayside
 web/dayside

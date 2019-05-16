@@ -1,7 +1,12 @@
+<?php
+/**
+ * @var array $post
+ */
+?>
 <form action="" method="POST">
     <div class="form-group">
         <label for="login">Логин</label>
-        <input type="text" name="login" value="<?= $post['login'] ?>" class="form-control" id="login" placeholder="Введите логин" />
+        <input type="text" name="login" value="<?= $post['login'] ?>" class="form-control" id="login" placeholder="Введите логин"/>
     </div>
     <div class="form-group">
         <label for="password">Пароль</label>

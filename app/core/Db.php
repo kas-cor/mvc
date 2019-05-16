@@ -2,17 +2,35 @@
 
 namespace app\core;
 
+use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
+/**
+ * Class Db
+ * @package app\core
+ */
 class Db {
 
+    /**
+     * DB params
+     * @var array
+     */
     protected $params;
 
+    /**
+     * Db constructor
+     * @param array $params
+     */
     public function __construct($params) {
         $this->params = $params;
     }
 
+    /**
+     * Component initialisation
+     * @return array
+     * @throws ORMException
+     */
     public function init() {
         $isDevMode = true;
         $config = Setup::createAnnotationMetadataConfiguration([__DIR__ . "/../models"], $isDevMode);
@@ -27,7 +45,7 @@ class Db {
 
         return [
             'em' => EntityManager::create($conn, $config),
-            'paginations' => $this->params['paginations'],
+            'pagination' => $this->params['pagination'],
         ];
     }
 

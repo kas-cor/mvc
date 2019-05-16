@@ -1,9 +1,13 @@
-<?php
+<?php /** @noinspection MissedFieldInspection */
+
+use app\core\Assets;
+use app\core\Db;
+use app\core\Route;
 
 return [
     'components' => [
         'assets' => [
-            'class' => \app\core\Assets::class,
+            'class' => Assets::class,
             'cache' => 'YmdH', // like php date('YmdHi'), this example is every minute
             'css' => [
                 '/vendor/twbs/bootstrap/dist/css/bootstrap.min.css',
@@ -14,12 +18,12 @@ return [
             ],
         ],
         'db' => [
-            'class' => \app\core\Db::class,
+            'class' => Db::class,
             'config' => require __DIR__ . '/db.php',
-            'paginations' => 3,
+            'pagination' => 3,
         ],
         'routes' => [
-            'class' => \app\core\Route::class,
+            'class' => Route::class,
             '' => [
                 'controller' => 'main',
                 'action' => 'index',

@@ -1,15 +1,17 @@
 {
-    "name": "mvc_pattern",
-    "description": "MVC Pattern",
-    "authors": [
-        {
-            "name": "kas-cor",
-            "email": "kascorp@gmail.com"
-        }
-    ],
-    "require": {
-        "twbs/bootstrap": "^4.2",
-        "components/jquery": "*",
-        "doctrine/orm": "^2.6.2"
+  "name": "mvc/pattern",
+  "license": "",
+  "description": "MVC Pattern",
+  "authors": [
+    {
+      "name": "kas-cor",
+      "email": "kascorp@gmail.com"
     }
+  ],
+  "require": {
+    "twbs/bootstrap": ">=4.3.1 <5.0.0",
+    "components/jquery": ">=3.3.1 <4.0.0",
+    "doctrine/orm": ">=2.6.3 <3.0.0",
+    "robmorgan/phinx": ">=0.10.7 <0.11.0"
+  }
 }

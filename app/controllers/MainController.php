@@ -3,15 +3,26 @@
 namespace app\controllers;
 
 use app\App;
+use app\core\Controller;
 use app\models\Tasks;
 use app\widgets\Alerts;
 use app\widgets\Sorting;
+use ErrorException;
 
-class MainController extends \app\core\Controller {
+/**
+ * Class MainController
+ * @package app\controllers
+ */
+class MainController extends Controller {
 
+    /**
+     * Index action
+     * @return string
+     * @throws ErrorException
+     */
     public function indexAction() {
         $get = App::$request['get'];
-        
+
         if ($post = App::$request['post']) {
             if (empty($post['name'])) {
                 Alerts::addFlash(Alerts::TYPE_WARNING, 'Не введено имя');
@@ -41,6 +52,7 @@ class MainController extends \app\core\Controller {
 
         $pagination = Tasks::pagination([], Sorting::getSorts(Tasks::className()), $get['page']);
 
+        /** @var array $post */
         return $this->render('index', [
                     'title' => 'Задачи',
                     'pagination' => $pagination,
@@ -48,6 +60,10 @@ class MainController extends \app\core\Controller {
         ]);
     }
 
+    /**
+     * Sorting action
+     * @return void
+     */
     public function sortAction() {
         if ($get = App::$request['get']) {
             Sorting::setSortToggle(Tasks::className(), $get['column']);
