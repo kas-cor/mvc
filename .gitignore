@@ -6,12 +6,7 @@ nbproject
 vendor
 
 # Config
-config/db.php
-phinx.yml
+.env
 
 # Composer
 composer.phar
-
-# Others
-dayside
-web/dayside

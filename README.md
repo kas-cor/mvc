@@ -19,25 +19,28 @@ web             Web root
 
 ### Install dependants
 
+#### Install Composer
+
+```bash
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+```
+
+#### Install plugin bower & npm package
+
+```bash
+composer global require "fxp/composer-asset-plugin:~1.4.5"
+```
+
+#### Install dependents
+
 ```bash
 composer install
 ```
 
-### Config DB
+### Config
 
-```bash
-cp config/db.sample.php config/db.php
-```
-
-Change `config/db.php`
-
-### Config migration
-
-```bash
-./vendor/bin/phinx init
-```
-
-Change `phinx.yml`
+Change `.env`
 
 ### Migrations and seeds data
 

@@ -10,16 +10,22 @@ return [
             'class' => Assets::class,
             'cache' => 'YmdH', // like php date('YmdHi'), this example is every minute
             'css' => [
-                '/vendor/twbs/bootstrap/dist/css/bootstrap.min.css',
+                '/vendor/npm-asset/normalize.css/normalize.css',
+                '/vendor/bower-asset/bootstrap/dist/css/bootstrap.min.css',
             ],
             'js' => [
-                '/vendor/components/jquery/jquery.min.js',
-                '/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js',
+                '/vendor/bower-asset/jquery/dist/jquery.min.js',
+                '/vendor/bower-asset/bootstrap/dist/js/bootstrap.js',
             ],
         ],
         'db' => [
             'class' => Db::class,
-            'config' => require __DIR__ . '/db.php',
+            'config' => [
+                'host' => env('DBHOST'),
+                'dbname' => env('DBNAME'),
+                'username' => env('DBUSER'),
+                'password' => env('DBPASS'),
+            ],
             'pagination' => 3,
         ],
         'routes' => [

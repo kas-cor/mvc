@@ -6,13 +6,18 @@
  */
 
 use app\App;
+use Dotenv\Dotenv;
 
-require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/../app/autoload.php';
+session_start();
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+Dotenv::create(__DIR__ . '/..')->load();
 
 $config = require __DIR__ . '/../config/web.php';
 
 try {
     (new App($config))->run();
 } catch (ErrorException $e) {
+    die($e->getMessage());
 }

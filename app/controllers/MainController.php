@@ -29,7 +29,7 @@ class MainController extends Controller {
             }
             if (empty($post['email'])) {
                 Alerts::addFlash(Alerts::TYPE_WARNING, 'Не введен e-mail');
-            } else  {
+            } else {
                 if (!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
                     Alerts::addFlash(Alerts::TYPE_WARNING, 'Введен не верный e-mail');
                 }
@@ -54,9 +54,9 @@ class MainController extends Controller {
 
         /** @var array $post */
         return $this->render('index', [
-                    'title' => 'Задачи',
-                    'pagination' => $pagination,
-                    'post' => $post,            
+            'title' => 'Задачи',
+            'pagination' => $pagination,
+            'post' => $post,
         ]);
     }
 
