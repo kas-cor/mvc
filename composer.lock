@@ -19,7 +19,7 @@
                 "url": "https://api.github.com/repos/twbs/bootstrap/zipball/8fa0d3010112dca5dd6dd501173415856001ba8b",
                 "reference": "8fa0d3010112dca5dd6dd501173415856001ba8b"
             },
-            "type": "bower-asset-library"
+            "type": "bower-asset"
         },
         {
             "name": "bower-asset/jquery",
@@ -34,23 +34,10 @@
                 "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/15bc73803f76bc53b654b9fdbbbc096f56d7c03d",
                 "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
             },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": "dist/jquery.js",
-                "bower-asset-ignore": [
-                    "package.json"
-                ]
-            },
+            "type": "bower-asset",
             "license": [
                 "MIT"
-            ],
-            "keywords": [
-                "browser",
-                "javascript",
-                "jquery",
-                "library"
-            ],
-            "time": "2019-05-01T21:19:28+00:00"
+            ]
         },
         {
             "name": "cakephp/cache",
@@ -1267,27 +1254,12 @@
             "version": "8.0.1",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/normalize.css/-/normalize.css-8.0.1.tgz",
-                "shasum": "9b98a208738b9cc2634caacbc42d131c97487bf3"
+                "url": "https://registry.npmjs.org/normalize.css/-/normalize.css-8.0.1.tgz"
             },
-            "type": "npm-asset-library",
-            "extra": {
-                "npm-asset-bugs": {
-                    "url": "https://github.com/necolas/normalize.css/issues"
-                },
-                "npm-asset-main": "normalize.css",
-                "npm-asset-directories": [],
-                "npm-asset-repository": {
-                    "type": "git",
-                    "url": "git+https://github.com/necolas/normalize.css.git"
-                }
-            },
+            "type": "npm-asset",
             "license": [
                 "MIT"
-            ],
-            "description": "A modern alternative to CSS resets",
-            "homepage": "https://necolas.github.io/normalize.css",
-            "time": "2018-11-09T22:48:56+00:00"
+            ]
         },
         {
             "name": "phpoption/phpoption",
