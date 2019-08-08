@@ -2,9 +2,9 @@
 
 namespace app\core;
 
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Tools\Setup;
-use Doctrine\ORM\EntityManager;
 
 /**
  * Class Db

@@ -4,9 +4,9 @@ namespace app\controllers;
 
 use app\App;
 use app\core\Controller;
+use app\models\Tasks;
 use app\models\Users;
 use app\widgets\Alerts;
-use app\models\Tasks;
 use app\widgets\Sorting;
 use ErrorException;
 

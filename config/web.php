@@ -8,7 +8,7 @@ return [
     'components' => [
         'assets' => [
             'class' => Assets::class,
-            'cache' => 'YmdH', // like php date('YmdHi'), this example is every minute
+            'cache' => env('ASSETS_CACHE'),
             'css' => [
                 '/vendor/npm-asset/normalize.css/normalize.css',
                 '/vendor/bower-asset/bootstrap/dist/css/bootstrap.min.css',
@@ -26,7 +26,7 @@ return [
                 'username' => env('DBUSER'),
                 'password' => env('DBPASS'),
             ],
-            'pagination' => 3,
+            'pagination' => env('PAGINATION'),
         ],
         'routes' => [
             'class' => Route::class,

@@ -6,8 +6,8 @@
  */
 
 use app\core\Assets;
-use app\widgets\Alerts;
 use app\models\Users;
+use app\widgets\Alerts;
 
 $current_controller = app\App::$components['routes']['controller'];
 ?>

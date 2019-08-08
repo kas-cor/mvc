@@ -1,13 +1,24 @@
 {
-  "name": "kas-cor/mvc-pattern",
+  "name": "kas-cor/mvc",
   "license": "MIT",
   "description": "MVC Pattern",
+  "keywords": [
+    "php7",
+    "doctrine-orm",
+    "phinx",
+    "bootstrap4",
+    "jquery"
+  ],
   "authors": [
     {
       "name": "kas-cor",
       "email": "kascorp@gmail.com"
     }
   ],
+  "homepage": "https://github.com/kas-cor/mvc",
+  "support": {
+    "issues": "https://github.com/kas-cor/mvc/issues"
+  },
   "require": {
     "php": ">=7.2.0",
     "doctrine/orm": "^2.6.3",

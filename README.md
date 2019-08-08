@@ -40,7 +40,7 @@ composer install
 
 ### Config
 
-Change `.env`
+Edit file `.env`
 
 ### Migrations and seeds data
 
