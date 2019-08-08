@@ -8,18 +8,21 @@ use Doctrine\ORM\Tools\Setup;
 
 /**
  * Class Db
+ *
  * @package app\core
  */
 class Db {
 
     /**
      * DB params
+     *
      * @var array
      */
     protected $params;
 
     /**
      * Db constructor
+     *
      * @param array $params
      */
     public function __construct($params) {
@@ -28,6 +31,7 @@ class Db {
 
     /**
      * Component initialisation
+     *
      * @return array
      * @throws ORMException
      */
@@ -35,13 +39,13 @@ class Db {
         $isDevMode = true;
         $config = Setup::createAnnotationMetadataConfiguration([__DIR__ . "/../models"], $isDevMode);
 
-        $conn = array(
+        $conn = [
             'driver' => 'pdo_mysql',
             'host' => $this->params['config']['host'],
             'dbname' => $this->params['config']['dbname'],
             'user' => $this->params['config']['username'],
             'password' => $this->params['config']['password'],
-        );
+        ];
 
         return [
             'em' => EntityManager::create($conn, $config),

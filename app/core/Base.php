@@ -6,30 +6,35 @@ use ErrorException;
 
 /**
  * Class Base
+ *
  * @package app\core
  */
 class Base {
 
     /**
      * App config
+     *
      * @var array
      */
     public $config;
 
     /**
      * App components
+     *
      * @var array
      */
     public static $components = [];
 
     /**
      * App requests
+     *
      * @var array
      */
     public static $request = [];
 
     /**
      * Base constructor
+     *
      * @param $config
      */
     public function __construct($config) {
@@ -38,12 +43,13 @@ class Base {
 
     /**
      * App running
+     *
      * @throws ErrorException
      */
     public function run() {
         // Filtering request
         $this->genRequest();
-        
+
         // Components loading
         foreach ($this->config['components'] as $name => $config) {
             if (class_exists($config['class'])) {
@@ -57,7 +63,9 @@ class Base {
 
     /**
      * Filtering request
+     *
      * @param array $data
+     *
      * @return array|string
      */
     static function convRequest($data) {

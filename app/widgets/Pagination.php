@@ -7,6 +7,7 @@ use app\core\Widget;
 
 /**
  * Class Pagination
+ *
  * @package app\widgets
  */
 class Pagination extends Widget {
@@ -16,6 +17,7 @@ class Pagination extends Widget {
      * ```php
      * Pagination::widget($pagination)
      * ```
+     *
      * @param array $pagination
      */
     static function widget($pagination) {

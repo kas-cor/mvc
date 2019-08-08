@@ -34,6 +34,7 @@ class Users extends Model {
 
     /**
      * getting ID
+     *
      * @return integer
      */
     public function getId() {
@@ -42,6 +43,7 @@ class Users extends Model {
 
     /**
      * Getting Login
+     *
      * @return string
      */
     public function getLogin() {
@@ -50,6 +52,7 @@ class Users extends Model {
 
     /**
      * Setting Login
+     *
      * @param string $login
      */
     public function setLogin($login) {
@@ -58,6 +61,7 @@ class Users extends Model {
 
     /**
      * Getting Password
+     *
      * @return string
      */
     public function getPassword() {
@@ -66,6 +70,7 @@ class Users extends Model {
 
     /**
      * Setting Password
+     *
      * @param string $password
      */
     public function setPassword($password) {
@@ -74,8 +79,10 @@ class Users extends Model {
 
     /**
      * Singin user
+     *
      * @param string $login
      * @param string $password
+     *
      * @return Users|null
      */
     static function singIn($login, $password) {
@@ -96,6 +103,7 @@ class Users extends Model {
 
     /**
      * Getting is auth user
+     *
      * @return bool
      */
     static function isAuth() {

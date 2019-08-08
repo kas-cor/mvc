@@ -6,30 +6,35 @@ use ErrorException;
 
 /**
  * Class View
+ *
  * @package app\core
  */
 class View {
 
     /**
      * Layout name
+     *
      * @var string
      */
     public $layout = 'main';
 
     /**
      * Path to view
+     *
      * @var array
      */
     public $path;
 
     /**
      * View name
+     *
      * @var string
      */
     public $view;
 
     /**
      * View constructor
+     *
      * @param string $path
      * @param string $view
      */
@@ -40,7 +45,9 @@ class View {
 
     /**
      * Render view
+     *
      * @param array $vars
+     *
      * @throws ErrorException
      */
     public function render($vars) {

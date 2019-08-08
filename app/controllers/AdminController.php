@@ -12,12 +12,14 @@ use ErrorException;
 
 /**
  * Class AdminController
+ *
  * @package app\controllers
  */
 class AdminController extends Controller {
 
     /**
      * Index action
+     *
      * @return string
      * @throws ErrorException
      */
@@ -70,14 +72,15 @@ class AdminController extends Controller {
         $pagination = Tasks::pagination([], Sorting::getSorts(Tasks::className()), $get['page']);
 
         return $this->render('index', [
-                    'title' => 'Админка',
-                    'pagination' => $pagination,
-                    'post' => $post,
+            'title' => 'Админка',
+            'pagination' => $pagination,
+            'post' => $post,
         ]);
     }
 
     /**
      * Login action
+     *
      * @return string
      * @throws ErrorException
      */
@@ -103,13 +106,14 @@ class AdminController extends Controller {
         }
 
         return $this->render('login', [
-                    'title' => 'Админка (вход)',
-                    'post' => $post,
+            'title' => 'Админка (вход)',
+            'post' => $post,
         ]);
     }
 
     /**
      * Logout action
+     *
      * @return void
      */
     public function logoutAction() {

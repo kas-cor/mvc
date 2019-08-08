@@ -4,6 +4,7 @@ namespace app\widgets;
 
 /**
  * Class Alerts
+ *
  * @package app\widgets
  */
 class Alerts {
@@ -50,6 +51,7 @@ class Alerts {
 
     /**
      * Add flash message
+     *
      * @param string $type
      * @param string $text
      */
@@ -62,6 +64,7 @@ class Alerts {
 
     /**
      * Set flash message
+     *
      * @param string $type
      * @param string $text
      */
@@ -74,6 +77,7 @@ class Alerts {
 
     /**
      * Getting is present flash messages
+     *
      * @return bool
      */
     static function isPresent() {

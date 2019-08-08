@@ -2,7 +2,7 @@
 
 /**
  * @var array $pagination
- * @var $task Tasks
+ * @var       $task Tasks
  */
 
 use app\models\Tasks;

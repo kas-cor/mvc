@@ -6,6 +6,7 @@ use app\core\Widget;
 
 /**
  * Class Sorting
+ *
  * @package app\widgets
  */
 class Sorting extends Widget {
@@ -22,6 +23,7 @@ class Sorting extends Widget {
 
     /**
      * Setting sorting
+     *
      * @param string $modelName
      * @param string $column
      * @param string $order
@@ -34,8 +36,10 @@ class Sorting extends Widget {
 
     /**
      * Getting sorting
+     *
      * @param string $modelName
      * @param string $column
+     *
      * @return string|null
      */
     static function getSort($modelName, $column) {
@@ -44,6 +48,7 @@ class Sorting extends Widget {
 
     /**
      * Setting sorting (toggle)
+     *
      * @param string $modelName
      * @param string $column
      */
@@ -61,7 +66,9 @@ class Sorting extends Widget {
 
     /**
      * Getting all sorting by model name
+     *
      * @param string $modelName
+     *
      * @return array
      */
     static function getSorts($modelName) {
@@ -70,6 +77,7 @@ class Sorting extends Widget {
 
     /**
      * Render widget
+     *
      * @param string $modelName
      * @param string $title
      * @param string $column
@@ -92,8 +100,10 @@ class Sorting extends Widget {
 
     /**
      * Checking sorting
+     *
      * @param string $modelName
      * @param string $column
+     *
      * @return bool
      */
     static function checkSortColumn($modelName, $column) {
