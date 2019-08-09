@@ -21,11 +21,11 @@
   },
   "require": {
     "php": ">=7.2.0",
-    "doctrine/orm": "^2.6.3",
-    "robmorgan/phinx": "^0.10.8",
-    "npm-asset/normalize.css": "^8.0.1",
     "bower-asset/bootstrap": "^4.3.1",
     "bower-asset/jquery": "^3.4.1",
+    "doctrine/orm": "^2.6.3",
+    "npm-asset/normalize.css": "^8.0.1",
+    "robmorgan/phinx": "^0.10.8",
     "vlucas/phpdotenv": "^3.4.0"
   },
   "autoload": {

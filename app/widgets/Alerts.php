@@ -101,6 +101,9 @@ class Alerts {
                 ?>
                 <div class="alert alert-<?= $alert['type'] ?>" role="alert">
                     <?= $alert['text'] ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <?php
             }
