@@ -4,7 +4,7 @@
 
 ```text
 app             Source application
-|- controler    Controllers
+|- controller    Controllers
 |- core         Core application
 |- models       Models application
 |- views        Views application
