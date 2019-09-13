@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\models;
+namespace tests\app\models;
 
 use PHPUnit\Framework\TestCase;
 

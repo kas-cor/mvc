@@ -7,7 +7,6 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * Class Model
- *
  * @package app\core
  */
 class Model {
@@ -24,7 +23,6 @@ class Model {
 
     /**
      * Getting DB instant
-     *
      * @return mixed
      */
     static function getEm() {
@@ -33,7 +31,6 @@ class Model {
 
     /**
      * Find
-     *
      * @return mixed
      */
     static function find() {
@@ -42,9 +39,7 @@ class Model {
 
     /**
      * Count
-     *
      * @param array $criteria
-     *
      * @return mixed
      */
     static function count($criteria = []) {
@@ -61,9 +56,7 @@ class Model {
 
     /**
      * Find one
-     *
      * @param integer $id
-     *
      * @return mixed
      */
     static function findOne($id) {
@@ -72,10 +65,8 @@ class Model {
 
     /**
      * Find one by...
-     *
      * @param array $criteria
      * @param array $order
-     *
      * @return mixed
      */
     static function findOneBy($criteria = [], $order = []) {
@@ -85,10 +76,8 @@ class Model {
 
     /**
      * Find all
-     *
      * @param array $criteria
      * @param array $order
-     *
      * @return mixed
      */
     static function findAll($criteria = [], $order = []) {
@@ -98,11 +87,9 @@ class Model {
 
     /**
      * Pagination
-     *
-     * @param array   $criteria
-     * @param array   $order
+     * @param array $criteria
+     * @param array $order
      * @param integer $page
-     *
      * @return array
      */
     static function pagination($criteria = [], $order = [], $page = 1) {
@@ -130,7 +117,6 @@ class Model {
 
     /**
      * Getting called class name
-     *
      * @return string
      */
     static function className() {

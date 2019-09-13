@@ -11,14 +11,12 @@ use ErrorException;
 
 /**
  * Class MainController
- *
  * @package app\controllers
  */
 class MainController extends Controller {
 
     /**
      * Index action
-     *
      * @return string
      * @throws ErrorException
      */
@@ -64,7 +62,6 @@ class MainController extends Controller {
 
     /**
      * Sorting action
-     *
      * @return void
      */
     public function sortAction() {
