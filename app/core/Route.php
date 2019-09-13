@@ -7,28 +7,24 @@ use ErrorException;
 
 /**
  * Class Route
- *
  * @package app\core
  */
 class Route {
 
     /**
      * App routes
-     *
      * @var array
      */
     protected $routes;
 
     /**
      * App params
-     *
      * @var array
      */
     protected $params;
 
     /**
      * Route constructor
-     *
      * @param array $routes
      */
     public function __construct($routes) {
@@ -60,7 +56,6 @@ class Route {
 
     /**
      * Matching class
-     *
      * @return bool
      */
     private function match() {

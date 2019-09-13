@@ -59,7 +59,6 @@ class Tasks extends Model {
 
     /**
      * Getting ID
-     *
      * @return integer
      */
     public function getId() {
@@ -68,7 +67,6 @@ class Tasks extends Model {
 
     /**
      * Getting Name
-     *
      * @return string
      */
     public function getName() {
@@ -77,7 +75,6 @@ class Tasks extends Model {
 
     /**
      * Setting Name
-     *
      * @param string $name
      */
     public function setName($name) {
@@ -86,7 +83,6 @@ class Tasks extends Model {
 
     /**
      * Getting Email
-     *
      * @return string
      */
     public function getEmail() {
@@ -95,7 +91,6 @@ class Tasks extends Model {
 
     /**
      * Getting Text
-     *
      * @return string
      */
     public function getText() {
@@ -104,7 +99,6 @@ class Tasks extends Model {
 
     /**
      * Getting Created at
-     *
      * @return integer
      */
     public function getCreated_at() {
@@ -113,7 +107,6 @@ class Tasks extends Model {
 
     /**
      * Setting Email
-     *
      * @param string $email
      */
     public function setEmail($email) {
@@ -122,7 +115,6 @@ class Tasks extends Model {
 
     /**
      * Setting Text
-     *
      * @param string $text
      */
     public function setText($text) {
@@ -131,7 +123,6 @@ class Tasks extends Model {
 
     /**
      * Getting Status
-     *
      * @return integer
      */
     public function getStatus() {
@@ -140,7 +131,6 @@ class Tasks extends Model {
 
     /**
      * Setting Status
-     *
      * @param integer $status
      */
     public function setStatus($status) {
@@ -149,7 +139,6 @@ class Tasks extends Model {
 
     /**
      * Setting Created at
-     *
      * @param integer $created_at
      */
     public function setCreated_at($created_at) {
@@ -158,7 +147,6 @@ class Tasks extends Model {
 
     /**
      * Getting status list
-     *
      * @return array
      */
     static function getStatusList() {

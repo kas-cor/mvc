@@ -12,14 +12,12 @@ use ErrorException;
 
 /**
  * Class AdminController
- *
  * @package app\controllers
  */
 class AdminController extends Controller {
 
     /**
      * Index action
-     *
      * @return string
      * @throws ErrorException
      */
@@ -80,7 +78,6 @@ class AdminController extends Controller {
 
     /**
      * Login action
-     *
      * @return string
      * @throws ErrorException
      */
@@ -113,7 +110,6 @@ class AdminController extends Controller {
 
     /**
      * Logout action
-     *
      * @return void
      */
     public function logoutAction() {

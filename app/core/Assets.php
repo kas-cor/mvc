@@ -6,35 +6,30 @@ use app\App;
 
 /**
  * Class Assets
- *
  * @package app\core
  */
 class Assets {
 
     /**
      * App params
-     *
      * @var array
      */
     protected $params;
 
     /**
      * Path to web root
-     *
      * @var string
      */
     protected $web;
 
     /**
      * Cache
-     *
      * @var bool|string
      */
     protected $cache;
 
     /**
      * Assets constructor
-     *
      * @param $params
      */
     public function __construct($params) {
@@ -45,7 +40,6 @@ class Assets {
 
     /**
      * App initialisation
-     *
      * @return array
      */
     public function init() {
@@ -99,7 +93,6 @@ class Assets {
 
     /**
      * Generate cache hash
-     *
      * @return bool
      */
     private function genHash() {
@@ -128,9 +121,7 @@ class Assets {
 
     /**
      * Remove cache folders and files
-     *
      * @param $dir
-     *
      * @return bool
      */
     private function delTree($dir) {

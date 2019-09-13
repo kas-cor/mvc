@@ -8,21 +8,18 @@ use Doctrine\ORM\Tools\Setup;
 
 /**
  * Class Db
- *
  * @package app\core
  */
 class Db {
 
     /**
      * DB params
-     *
      * @var array
      */
     protected $params;
 
     /**
      * Db constructor
-     *
      * @param array $params
      */
     public function __construct($params) {
@@ -31,7 +28,6 @@ class Db {
 
     /**
      * Component initialisation
-     *
      * @return array
      * @throws ORMException
      */
