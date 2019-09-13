@@ -7,7 +7,6 @@
 
 use app\App;
 use Dotenv\Dotenv;
-use Sentry;
 
 session_start();
 
