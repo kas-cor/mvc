@@ -94,7 +94,7 @@ class AdminController extends Controller {
                 Alerts::addFlash(Alerts::TYPE_WARNING, 'Введите пароль');
             }
             if (!Alerts::isPresent()) {
-                if (!Users::singIn($post['login'], $post['password'])) {
+                if (!Users::signIn($post['login'], $post['password'])) {
                     Alerts::addFlash(Alerts::TYPE_WARNING, 'Не верный логин или пароль');
                 } else {
                     return $this->redirect('/admin');
@@ -113,7 +113,7 @@ class AdminController extends Controller {
      * @return void
      */
     public function logoutAction() {
-        Users::singOut();
+        Users::logOut();
 
         return $this->redirect('/');
     }

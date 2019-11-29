@@ -69,12 +69,12 @@ class Users extends Model {
     }
 
     /**
-     * Sing in user
+     * Sign in user
      * @param string $login Login
      * @param string $password Password
      * @return Users|null
      */
-    static function singIn($login, $password) {
+    static function signIn($login, $password) {
         if ($user = Users::findOneBy(['login' => $login, 'password' => md5($password)])) {
             $_SESSION['user'] = [
                 'login' => $login,
@@ -84,9 +84,9 @@ class Users extends Model {
     }
 
     /**
-     * Sing out user
+     * Logout user
      */
-    static function singOut() {
+    static function logOut() {
         unset($_SESSION['user']);
     }
 
