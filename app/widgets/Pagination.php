@@ -18,7 +18,7 @@ class Pagination extends Widget {
      * ```
      * @param array $pagination
      */
-    static function widget($pagination) {
+    static function widget(array $pagination) {
         $length = App::$components['db']['pagination'];
         ?>
         <nav aria-label="">

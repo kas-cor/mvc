@@ -16,11 +16,12 @@ class MainController extends Controller {
 
     /**
      * Index action
-     * @return string
+     * @return null
      * @throws ErrorException
      * @throws \Exception
      */
     public function indexAction() {
+        /** @var array $post */
         $get = App::$request['get'];
 
         if ($post = App::$request['post']) {
@@ -52,7 +53,6 @@ class MainController extends Controller {
 
         $pagination = Tasks::pagination([], Sorting::getSorts(Tasks::className()), $get['page']);
 
-        /** @var array $post */
         return $this->render('index', [
             'title' => 'Задачи',
             'pagination' => $pagination,
@@ -62,7 +62,6 @@ class MainController extends Controller {
 
     /**
      * Sorting action
-     * @return void
      */
     public function sortAction() {
         if ($get = App::$request['get']) {

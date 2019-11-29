@@ -25,7 +25,7 @@ class Route {
      * Route constructor
      * @param array $routes
      */
-    public function __construct($routes) {
+    public function __construct(array $routes) {
         $this->routes = $routes;
     }
 
@@ -56,7 +56,7 @@ class Route {
      * Matching class
      * @return bool
      */
-    private function match() {
+    private function match(): bool {
         $url = trim($_SERVER['REDIRECT_URL'], '/');
         foreach ($this->routes as $route => $params) {
             if ($route == 'class') {

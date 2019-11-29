@@ -40,7 +40,7 @@ class Users extends Model {
      * Getting Login
      * @return string
      */
-    public function getLogin() {
+    public function getLogin(): string {
         return $this->login;
     }
 
@@ -48,7 +48,7 @@ class Users extends Model {
      * Setting Login
      * @param string $login
      */
-    public function setLogin($login) {
+    public function setLogin(string $login) {
         $this->login = $login;
     }
 
@@ -56,7 +56,7 @@ class Users extends Model {
      * Getting Password
      * @return string
      */
-    public function getPassword() {
+    public function getPassword(): string {
         return $this->password;
     }
 
@@ -64,7 +64,7 @@ class Users extends Model {
      * Setting Password
      * @param string $password
      */
-    public function setPassword($password) {
+    public function setPassword(string $password) {
         $this->password = $password;
     }
 
@@ -74,12 +74,13 @@ class Users extends Model {
      * @param string $password Password
      * @return Users|null
      */
-    static function signIn($login, $password) {
+    static function signIn(string $login, string $password): Users {
         if ($user = Users::findOneBy(['login' => $login, 'password' => md5($password)])) {
             $_SESSION['user'] = [
                 'login' => $login,
             ];
         }
+
         return $user;
     }
 
@@ -94,7 +95,7 @@ class Users extends Model {
      * Getting is auth user
      * @return bool
      */
-    static function isAuth() {
+    static function isAuth(): bool {
         return isset($_SESSION['user']);
     }
 

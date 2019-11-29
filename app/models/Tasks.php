@@ -57,7 +57,7 @@ class Tasks extends Model {
      * Getting ID
      * @return integer
      */
-    public function getId() {
+    public function getId(): int {
         return $this->id;
     }
 
@@ -65,7 +65,7 @@ class Tasks extends Model {
      * Getting Name
      * @return string
      */
-    public function getName() {
+    public function getName(): string {
         return $this->name;
     }
 
@@ -73,7 +73,7 @@ class Tasks extends Model {
      * Setting Name
      * @param string $name
      */
-    public function setName($name) {
+    public function setName(string $name) {
         $this->name = $name;
     }
 
@@ -81,7 +81,7 @@ class Tasks extends Model {
      * Getting Email
      * @return string
      */
-    public function getEmail() {
+    public function getEmail(): string {
         return $this->email;
     }
 
@@ -89,7 +89,7 @@ class Tasks extends Model {
      * Getting Text
      * @return string
      */
-    public function getText() {
+    public function getText(): string {
         return $this->text;
     }
 
@@ -97,7 +97,7 @@ class Tasks extends Model {
      * Getting Created at
      * @return integer
      */
-    public function getCreated_at() {
+    public function getCreated_at(): int {
         return $this->created_at;
     }
 
@@ -105,7 +105,7 @@ class Tasks extends Model {
      * Setting Email
      * @param string $email
      */
-    public function setEmail($email) {
+    public function setEmail(string $email) {
         $this->email = $email;
     }
 
@@ -113,7 +113,7 @@ class Tasks extends Model {
      * Setting Text
      * @param string $text
      */
-    public function setText($text) {
+    public function setText(string $text) {
         $this->text = $text;
     }
 
@@ -121,7 +121,7 @@ class Tasks extends Model {
      * Getting Status
      * @return integer
      */
-    public function getStatus() {
+    public function getStatus(): int {
         return $this->status;
     }
 
@@ -129,7 +129,7 @@ class Tasks extends Model {
      * Setting Status
      * @param integer $status
      */
-    public function setStatus($status) {
+    public function setStatus(int $status) {
         $this->status = $status;
     }
 
@@ -137,7 +137,7 @@ class Tasks extends Model {
      * Setting Created at
      * @param integer $created_at
      */
-    public function setCreated_at($created_at) {
+    public function setCreated_at(int $created_at) {
         $this->created_at = $created_at;
     }
 
@@ -145,7 +145,7 @@ class Tasks extends Model {
      * Getting status list
      * @return array
      */
-    static function getStatusList() {
+    static function getStatusList(): array {
         return [
             self::STATUS_NOT_SUCCESS => 'Не выполнена',
             self::STATUS_SUCCESS => 'Выполнена',

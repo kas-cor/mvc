@@ -6,7 +6,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class TaskTest
- *
  * @package tests\models
  * @covers \app\models\Tasks
  */

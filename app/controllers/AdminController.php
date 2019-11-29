@@ -4,10 +4,10 @@ namespace app\controllers;
 
 use app\App;
 use app\core\Controller;
-use Exception;
 use app\models\{Tasks, Users};
 use app\widgets\{Alerts, Sorting};
 use ErrorException;
+use Exception;
 
 /**
  * Class AdminController
@@ -17,7 +17,7 @@ class AdminController extends Controller {
 
     /**
      * Index action
-     * @return string
+     * @return null
      * @throws ErrorException
      * @throws Exception
      */
@@ -78,7 +78,7 @@ class AdminController extends Controller {
 
     /**
      * Login action
-     * @return string
+     * @return null
      * @throws ErrorException
      */
     public function loginAction() {
@@ -108,9 +108,9 @@ class AdminController extends Controller {
         ]);
     }
 
+
     /**
      * Logout action
-     * @return void
      */
     public function logoutAction() {
         Users::logOut();

@@ -29,7 +29,7 @@ class Assets {
      * Assets constructor
      * @param array $params
      */
-    public function __construct($params) {
+    public function __construct(array $params) {
         $this->params = $params;
         $this->web = __DIR__ . '/../../web';
         $this->cache = substr(md5(date($this->params['cache'])), 0, 8);
@@ -39,7 +39,7 @@ class Assets {
      * App initialisation
      * @return array
      */
-    public function init() {
+    public function init(): array {
         $hash = $this->genHash();
         $css = [];
         $js = [];
@@ -92,7 +92,7 @@ class Assets {
      * Generate cache hash
      * @return bool
      */
-    private function genHash() {
+    private function genHash(): bool {
         if (!file_exists($this->web . '/assets')) {
             mkdir($this->web . '/assets');
         }
@@ -121,7 +121,7 @@ class Assets {
      * @param string $dir
      * @return bool
      */
-    private function delTree($dir) {
+    private function delTree(string $dir): bool {
         $files = array_diff(scandir($dir), ['.', '..']);
         foreach ($files as $file) {
             (is_dir("$dir/$file")) ? $this->delTree("$dir/$file") : unlink("$dir/$file");

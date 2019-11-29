@@ -6,7 +6,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class ModelTest
- *
  * @package tests\core
  */
 class ModelTest extends TestCase {

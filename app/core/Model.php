@@ -4,6 +4,7 @@ namespace app\core;
 
 use app\App;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use phpDocumentor\Reflection\Types\Integer;
 
 /**
  * Class Model
@@ -42,7 +43,7 @@ class Model {
      * @param array $criteria
      * @return mixed
      */
-    static function count($criteria = []) {
+    static function count(array $criteria = []) {
         $repo = self::getEm()->getRepository(get_called_class());
         return $repo->count($criteria);
     }
@@ -59,7 +60,7 @@ class Model {
      * @param integer $id
      * @return mixed
      */
-    static function findOne($id) {
+    static function findOne(int $id) {
         return self::getEm()->find(get_called_class(), $id);
     }
 
@@ -69,7 +70,7 @@ class Model {
      * @param array $order
      * @return mixed
      */
-    static function findOneBy($criteria = [], $order = []) {
+    static function findOneBy(array $criteria = [], array $order = []) {
         $repo = self::getEm()->getRepository(get_called_class());
         return $repo->findOneBy($criteria, $order);
     }
@@ -80,7 +81,7 @@ class Model {
      * @param array $order
      * @return mixed
      */
-    static function findAll($criteria = [], $order = []) {
+    static function findAll(array $criteria = [], array $order = []) {
         $repo = self::getEm()->getRepository(get_called_class());
         return $repo->findBy($criteria, $order);
     }
@@ -93,7 +94,7 @@ class Model {
      * @return array
      * @throws \Exception
      */
-    static function pagination($criteria = [], $order = [], $page = 1) {
+    static function pagination(array $criteria = [], array $order = [], $page = 1): array {
         $repo = self::getEm()->getRepository(get_called_class());
         $query = $repo->createQueryBuilder('t');
         foreach ($criteria as $column => $value) {
@@ -120,7 +121,7 @@ class Model {
      * Getting called class name
      * @return string
      */
-    static function className() {
+    static function className(): string {
         return get_called_class();
     }
 

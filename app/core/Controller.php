@@ -22,9 +22,9 @@ abstract class Controller {
 
     /**
      * Controller constructor
-     * @param string $route
+     * @param array $route
      */
-    public function __construct($route) {
+    public function __construct(array $route) {
         $this->route = $route;
     }
 
@@ -35,7 +35,7 @@ abstract class Controller {
      * @return null
      * @throws ErrorException
      */
-    public function render($view, $vars) {
+    public function render(string $view, array $vars) {
         $view = new View($this->route, $view);
         $view->layout = $this->layout;
         $view->render($vars);
@@ -47,7 +47,7 @@ abstract class Controller {
      * Redirect
      * @param string $path Path to redirect
      */
-    public function redirect($path) {
+    public function redirect(string $path) {
         return header('location: ' . $path);
     }
 

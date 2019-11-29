@@ -6,7 +6,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class AssetsTest
- *
  * @package tests\core
  */
 class AssetsTest extends TestCase {

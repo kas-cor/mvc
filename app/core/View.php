@@ -27,10 +27,10 @@ class View {
 
     /**
      * View constructor
-     * @param string $path
+     * @param array $path
      * @param string $view
      */
-    public function __construct($path, $view) {
+    public function __construct(array $path, string $view) {
         $this->path = $path;
         $this->view = $view;
     }
@@ -40,7 +40,7 @@ class View {
      * @param array $vars
      * @throws ErrorException
      */
-    public function render($vars) {
+    public function render(array $vars) {
         $path = __DIR__ . '/../views/' . $this->path['controller'] . '/' . $this->view . '.php';
         if (file_exists($path)) {
             extract($vars);

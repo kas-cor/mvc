@@ -26,7 +26,7 @@ class Sorting extends Widget {
      * @param string $column
      * @param string $order
      */
-    static function setSort($modelName, $column, $order) {
+    static function setSort(string $modelName, string $column, string $order) {
         if (self::checkSortColumn($modelName, $column)) {
             $_SESSION['ordering'][$modelName][$column] = $order;
         }
@@ -38,7 +38,7 @@ class Sorting extends Widget {
      * @param string $column
      * @return string|null
      */
-    static function getSort($modelName, $column) {
+    static function getSort(string $modelName, string $column) {
         return self::checkSortColumn($modelName, $column) ? $_SESSION['ordering'][$modelName][$column] : null;
     }
 
@@ -47,7 +47,7 @@ class Sorting extends Widget {
      * @param string $modelName
      * @param string $column
      */
-    static function setSortToggle($modelName, $column) {
+    static function setSortToggle(string $modelName, string $column) {
         if (self::checkSortColumn($modelName, $column)) {
             if (!self::getSort($modelName, $column)) {
                 $_SESSION['ordering'][$modelName][$column] = self::ORDER_ASC;
@@ -64,7 +64,7 @@ class Sorting extends Widget {
      * @param string $modelName
      * @return array
      */
-    static function getSorts($modelName) {
+    static function getSorts(string $modelName): array {
         return $_SESSION['ordering'][$modelName] ?: [];
     }
 
@@ -75,7 +75,7 @@ class Sorting extends Widget {
      * @param string $column
      * @param string $path
      */
-    static function widget($modelName, $title, $column, $path) {
+    static function widget(string $modelName, string $title, string $column, string $path) {
         if (self::checkSortColumn($modelName, $column)) {
             if (self::getSort($modelName, $column) == self::ORDER_ASC) {
                 $icon = 'fas fa-sort-amount-down';
@@ -96,7 +96,7 @@ class Sorting extends Widget {
      * @param string $column
      * @return bool
      */
-    static function checkSortColumn($modelName, $column) {
+    static function checkSortColumn(string $modelName, string $column): bool {
         return property_exists($modelName, $column) OR die('Column "' . $column . '" not fount in model "' . $modelName . '"!');
     }
 

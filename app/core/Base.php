@@ -54,7 +54,7 @@ class Base {
 
     /**
      * Filtering request
-     * @param array $data
+     * @param array|string $data
      * @return array|string
      */
     static function convRequest($data) {

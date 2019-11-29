@@ -53,7 +53,7 @@ class Alerts {
      * @param string $type
      * @param string $text
      */
-    static function addFlash($type, $text) {
+    static function addFlash(string $type, string $text) {
         $_SESSION['flashAlerts'][] = [
             'type' => $type,
             'text' => $text,
@@ -65,7 +65,7 @@ class Alerts {
      * @param string $type
      * @param string $text
      */
-    static function setFlash($type, $text) {
+    static function setFlash(string $type, string $text) {
         $_SESSION['flashAlerts'] = [
             'type' => $type,
             'text' => $text,
@@ -76,7 +76,7 @@ class Alerts {
      * Getting is present flash messages
      * @return bool
      */
-    static function isPresent() {
+    static function isPresent(): bool {
         return isset($_SESSION['flashAlerts']);
     }
 

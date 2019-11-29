@@ -6,7 +6,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class DbTest
- *
  * @package tests\core
  */
 class DbTest extends TestCase {

@@ -20,7 +20,7 @@ class Db {
      * Db constructor
      * @param array $params
      */
-    public function __construct($params) {
+    public function __construct(array $params) {
         $this->params = $params;
     }
 
@@ -29,7 +29,7 @@ class Db {
      * @return array
      * @throws ORMException
      */
-    public function init() {
+    public function init(): array {
         $isDevMode = true;
         $config = Setup::createAnnotationMetadataConfiguration([__DIR__ . "/../models"], $isDevMode);
 
