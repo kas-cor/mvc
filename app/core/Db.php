@@ -2,8 +2,7 @@
 
 namespace app\core;
 
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\ORMException;
+use Doctrine\ORM\{EntityManager, ORMException};
 use Doctrine\ORM\Tools\Setup;
 
 /**
@@ -13,8 +12,7 @@ use Doctrine\ORM\Tools\Setup;
 class Db {
 
     /**
-     * DB params
-     * @var array
+     * @var array DB params
      */
     protected $params;
 

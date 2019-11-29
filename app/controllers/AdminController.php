@@ -4,10 +4,9 @@ namespace app\controllers;
 
 use app\App;
 use app\core\Controller;
-use app\models\Tasks;
-use app\models\Users;
-use app\widgets\Alerts;
-use app\widgets\Sorting;
+use Exception;
+use app\models\{Tasks, Users};
+use app\widgets\{Alerts, Sorting};
 use ErrorException;
 
 /**
@@ -20,6 +19,7 @@ class AdminController extends Controller {
      * Index action
      * @return string
      * @throws ErrorException
+     * @throws Exception
      */
     public function indexAction() {
         /** @var array $entry */

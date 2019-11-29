@@ -11,14 +11,12 @@ use ErrorException;
 abstract class Controller {
 
     /**
-     * Path route
-     * @var string
+     * @var string Path route
      */
     public $route;
 
     /**
-     * Layout name
-     * @var string
+     * @var string Layout name
      */
     public $layout = 'main';
 
@@ -32,8 +30,8 @@ abstract class Controller {
 
     /**
      * View render
-     * @param string $view
-     * @param array $vars
+     * @param string $view View name
+     * @param array $vars Variables
      * @return null
      * @throws ErrorException
      */
@@ -41,12 +39,13 @@ abstract class Controller {
         $view = new View($this->route, $view);
         $view->layout = $this->layout;
         $view->render($vars);
+
         return null;
     }
 
     /**
      * Redirect
-     * @param string $path
+     * @param string $path Path to redirect
      */
     public function redirect($path) {
         return header('location: ' . $path);

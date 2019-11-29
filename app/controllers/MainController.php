@@ -5,8 +5,7 @@ namespace app\controllers;
 use app\App;
 use app\core\Controller;
 use app\models\Tasks;
-use app\widgets\Alerts;
-use app\widgets\Sorting;
+use app\widgets\{Alerts, Sorting};
 use ErrorException;
 
 /**
@@ -19,6 +18,7 @@ class MainController extends Controller {
      * Index action
      * @return string
      * @throws ErrorException
+     * @throws \Exception
      */
     public function indexAction() {
         $get = App::$request['get'];

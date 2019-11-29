@@ -1,14 +1,13 @@
-<?php /** @noinspection PhpUnhandledExceptionInspection */
-
-/**
- * @var array $pagination
- * @var       $task Tasks
- */
+<?php
 
 use app\models\Tasks;
 use app\widgets\Pagination;
 use app\widgets\Sorting;
 
+/**
+ * @var array $pagination
+ * @var Tasks $task
+ */
 ?>
 <form action="" method="POST">
     <table class="table">

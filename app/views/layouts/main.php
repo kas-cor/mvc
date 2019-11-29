@@ -1,13 +1,13 @@
 <?php
 
+use app\core\Assets;
+use app\models\Users;
+use app\widgets\Alerts;
+
 /**
  * @var string $title
  * @var string $content
  */
-
-use app\core\Assets;
-use app\models\Users;
-use app\widgets\Alerts;
 
 $current_controller = app\App::$components['routes']['controller'];
 ?>

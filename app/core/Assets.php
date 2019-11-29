@@ -11,26 +11,23 @@ use app\App;
 class Assets {
 
     /**
-     * App params
-     * @var array
+     * @var array App params
      */
     protected $params;
 
     /**
-     * Path to web root
-     * @var string
+     * @var string Path to web root
      */
     protected $web;
 
     /**
-     * Cache
-     * @var bool|string
+     * @var bool|string Cache
      */
     protected $cache;
 
     /**
      * Assets constructor
-     * @param $params
+     * @param array $params
      */
     public function __construct($params) {
         $this->params = $params;
@@ -121,7 +118,7 @@ class Assets {
 
     /**
      * Remove cache folders and files
-     * @param $dir
+     * @param string $dir
      * @return bool
      */
     private function delTree($dir) {
@@ -129,6 +126,7 @@ class Assets {
         foreach ($files as $file) {
             (is_dir("$dir/$file")) ? $this->delTree("$dir/$file") : unlink("$dir/$file");
         }
+
         return rmdir($dir);
     }
 

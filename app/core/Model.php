@@ -1,4 +1,4 @@
-<?php /** @noinspection PhpUndefinedMethodInspection */
+<?php
 
 namespace app\core;
 
@@ -91,6 +91,7 @@ class Model {
      * @param array $order
      * @param integer $page
      * @return array
+     * @throws \Exception
      */
     static function pagination($criteria = [], $order = [], $page = 1) {
         $repo = self::getEm()->getRepository(get_called_class());

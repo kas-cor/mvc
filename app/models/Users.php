@@ -3,11 +3,7 @@
 namespace app\models;
 
 use app\core\Model;
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\Id;
-use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping\{Column, Entity, GeneratedValue, Id, Table};
 
 /**
  * @Entity
@@ -73,9 +69,9 @@ class Users extends Model {
     }
 
     /**
-     * Singin user
-     * @param string $login
-     * @param string $password
+     * Sing in user
+     * @param string $login Login
+     * @param string $password Password
      * @return Users|null
      */
     static function singIn($login, $password) {
@@ -88,7 +84,7 @@ class Users extends Model {
     }
 
     /**
-     * Singout user
+     * Sing out user
      */
     static function singOut() {
         unset($_SESSION['user']);

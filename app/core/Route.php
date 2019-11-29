@@ -12,14 +12,12 @@ use ErrorException;
 class Route {
 
     /**
-     * App routes
-     * @var array
+     * @var array App routes
      */
     protected $routes;
 
     /**
-     * App params
-     * @var array
+     * @var array App params
      */
     protected $params;
 
@@ -69,6 +67,7 @@ class Route {
                 return true;
             }
         }
+
         return false;
     }
 

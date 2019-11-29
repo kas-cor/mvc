@@ -1,4 +1,4 @@
-<?php /** @noinspection PhpUndefinedMethodInspection */
+<?php
 
 namespace app\core;
 
@@ -11,26 +11,23 @@ use ErrorException;
 class Base {
 
     /**
-     * App config
-     * @var array
+     * @var array App config
      */
     public $config;
 
     /**
-     * App components
-     * @var array
+     * @var array App components
      */
     public static $components = [];
 
     /**
-     * App requests
-     * @var array
+     * @var array App requests
      */
     public static $request = [];
 
     /**
      * Base constructor
-     * @param $config
+     * @param array $config
      */
     public function __construct($config) {
         $this->config = $config;

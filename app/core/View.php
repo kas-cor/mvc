@@ -1,4 +1,4 @@
-<?php /** @noinspection PhpIncludeInspection */
+<?php
 
 namespace app\core;
 
@@ -11,20 +11,17 @@ use ErrorException;
 class View {
 
     /**
-     * Layout name
-     * @var string
+     * @var string Layout name
      */
     public $layout = 'main';
 
     /**
-     * Path to view
-     * @var array
+     * @var array Path to view
      */
     public $path;
 
     /**
-     * View name
-     * @var string
+     * @var string View name
      */
     public $view;
 
@@ -49,7 +46,6 @@ class View {
             extract($vars);
             ob_start();
             require $path;
-            /** @noinspection PhpUnusedLocalVariableInspection */
             $content = ob_get_clean();
             require __DIR__ . '/../views/layouts/' . $this->layout . '.php';
         } else {

@@ -1,8 +1,6 @@
-<?php /** @noinspection MissedFieldInspection */
+<?php
 
-use app\core\Assets;
-use app\core\Db;
-use app\core\Route;
+use app\core\{Assets, Db, Route};
 
 return [
     'components' => [
