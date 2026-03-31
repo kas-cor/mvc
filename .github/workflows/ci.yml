@@ -1,0 +1,114 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: test_db
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+        ports:
+          - 3306:3306
+      
+      redis:
+        image: redis:alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
+    strategy:
+      matrix:
+        php-version: ['8.1', '8.2']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: pdo_mysql, gd, zip, intl
+          coverage: xdebug
+          tools: composer:v2
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Create .env file
+        run: |
+          cp .env.example .env
+          echo "DB_HOST=127.0.0.1" >> .env
+          echo "DB_PORT=3306" >> .env
+          echo "DB_NAME=test_db" >> .env
+          echo "DB_USER=root" >> .env
+          echo "DB_PASSWORD=root" >> .env
+          echo "REDIS_HOST=127.0.0.1" >> .env
+          echo "REDIS_PORT=6379" >> .env
+
+      - name: Run PHPStan
+        run: composer phpstan || true
+
+      - name: Run tests
+        run: composer test
+
+  docker-build:
+    runs-on: ubuntu-latest
+    needs: tests
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker build -t mvc-app:${{ github.sha }} .
+
+      - name: Test Docker containers
+        run: |
+          docker-compose up -d
+          sleep 30
+          docker-compose ps
+          docker-compose logs
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [tests, docker-build]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+      - name: Deploy to production
+        run: |
+          echo "Deploying to production..."
+          # Add your deployment steps here
+          # Example: SSH deployment, Kubernetes, etc.

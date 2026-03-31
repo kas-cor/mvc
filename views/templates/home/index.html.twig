@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Home - {{ app.name }}{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Welcome to {{ app.name }}</h1>
+    <p class="lead">A modern PHP MVC application with Twig, DI Container, and CLI tools.</p>
+    
+    <div class="features">
+        <div class="feature-card">
+            <h3>🚀 Fast & Secure</h3>
+            <p>Built with PHP 8.1+ and modern security practices.</p>
+        </div>
+        
+        <div class="feature-card">
+            <h3>📦 Dependency Injection</h3>
+            <p>Powerful DI container for better code organization.</p>
+        </div>
+        
+        <div class="feature-card">
+            <h3>🎨 Twig Templates</h3>
+            <p>Clean and secure templating engine.</p>
+        </div>
+        
+        <div class="feature-card">
+            <h3>⚡ CLI Tools</h3>
+            <p>Generate controllers, models, and manage your app from command line.</p>
+        </div>
+    </div>
+    
+    <div class="cta">
+        <a href="/about" class="btn btn-primary">Learn More</a>
+        <a href="/contact" class="btn btn-secondary">Contact Us</a>
+    </div>
+</div>
+{% endblock %}
