@@ -27,8 +27,24 @@ class AdminController extends Controller {
             return $this->redirect('/admin/login');
         }
 
+        // Generate CSRF token if not exists
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+
         $get = App::$request['get'];
         if ($post = App::$request['post']) {
+            // Verify CSRF token
+            if (empty($post['csrf_token']) || $post['csrf_token'] !== $_SESSION['csrf_token']) {
+                Alerts::addFlash(Alerts::TYPE_WARNING, 'Неверный CSRF токен');
+                $pagination = Tasks::pagination([], Sorting::getSorts(Tasks::className()), $get['page']);
+                return $this->render('index', [
+                    'title' => 'Админка',
+                    'pagination' => $pagination,
+                    'post' => $post,
+                ]);
+            }
+            
             // Revert array
             foreach ($post as $column => $rows) {
                 foreach ($rows as $id => $value) {
@@ -82,11 +98,25 @@ class AdminController extends Controller {
      * @throws ErrorException
      */
     public function loginAction() {
+        // Generate CSRF token if not exists
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+        
         if (Users::isAuth()) {
             return $this->redirect('/admin');
         }
 
         if ($post = App::$request['post']) {
+            // Verify CSRF token
+            if (empty($post['csrf_token']) || $post['csrf_token'] !== $_SESSION['csrf_token']) {
+                Alerts::addFlash(Alerts::TYPE_WARNING, 'Неверный CSRF токен');
+                return $this->render('login', [
+                    'title' => 'Админка (вход)',
+                    'post' => $post,
+                ]);
+            }
+            
             if (empty($post['login'])) {
                 Alerts::addFlash(Alerts::TYPE_WARNING, 'Введите логин');
             }
@@ -97,6 +127,8 @@ class AdminController extends Controller {
                 if (!Users::signIn($post['login'], $post['password'])) {
                     Alerts::addFlash(Alerts::TYPE_WARNING, 'Не верный логин или пароль');
                 } else {
+                    // Regenerate CSRF token after successful login
+                    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
                     return $this->redirect('/admin');
                 }
             }

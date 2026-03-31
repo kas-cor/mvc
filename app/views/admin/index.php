@@ -10,6 +10,7 @@ use app\widgets\Sorting;
  */
 ?>
 <form action="" method="POST">
+    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?? '' ?>">
     <table class="table">
         <thead>
         <tr>
@@ -24,32 +25,32 @@ use app\widgets\Sorting;
         <tbody>
         <?php foreach ($pagination['items'] as $task): ?>
             <tr>
-                <td><?= $task->getId() ?></td>
+                <td><?= htmlspecialchars($task->getId(), ENT_QUOTES, 'UTF-8') ?></td>
                 <td>
                     <label>
-                        <input type="text" name="name[<?= $task->getId() ?>]" value="<?= $task->getName() ?>" class="form-control"/>
+                        <input type="text" name="name[<?= $task->getId() ?>]" value="<?= htmlspecialchars($task->getName(), ENT_QUOTES, 'UTF-8') ?>" class="form-control"/>
                     </label>
                 </td>
                 <td>
                     <label>
-                        <input type="text" name="email[<?= $task->getId() ?>]" value="<?= $task->getEmail() ?>" class="form-control"/>
+                        <input type="text" name="email[<?= $task->getId() ?>]" value="<?= htmlspecialchars($task->getEmail(), ENT_QUOTES, 'UTF-8') ?>" class="form-control"/>
                     </label>
                 </td>
                 <td>
                     <label>
-                        <textarea name="text[<?= $task->getId() ?>]" cols="5" rows="1" class="form-control"><?= $task->getText() ?></textarea>
+                        <textarea name="text[<?= $task->getId() ?>]" cols="5" rows="1" class="form-control"><?= htmlspecialchars($task->getText(), ENT_QUOTES, 'UTF-8') ?></textarea>
                     </label>
                 </td>
                 <td>
                     <label>
                         <select name="status[<?= $task->getId() ?>]" class="form-control">
                             <?php foreach (Tasks::getStatusList() as $status => $name): ?>
-                                <option <?= $status == $task->getStatus() ? 'selected' : '' ?> value="<?= $status ?>"><?= $name ?></option>
+                                <option <?= $status == $task->getStatus() ? 'selected' : '' ?> value="<?= $status ?>"><?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8') ?></option>
                             <?php endforeach; ?>
                         </select>
                     </label>
                 </td>
-                <td><?= date('d.m.Y (H:i:s)', $task->getCreated_at()) ?></td>
+                <td><?= htmlspecialchars(date('d.m.Y (H:i:s)', $task->getCreated_at()), ENT_QUOTES, 'UTF-8') ?></td>
             </tr>
         <?php endforeach; ?>
         <tr>

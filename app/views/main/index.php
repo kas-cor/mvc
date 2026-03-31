@@ -10,6 +10,7 @@ use app\widgets\{Pagination, Sorting};
  */
 ?>
 <form action="" method="POST">
+    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?? '' ?>">
     <table class="table">
         <thead>
         <tr>
@@ -24,29 +25,29 @@ use app\widgets\{Pagination, Sorting};
         <tbody>
         <?php foreach ($pagination['items'] as $task): ?>
             <tr>
-                <td><?= $task->getId() ?></td>
-                <td><?= $task->getName() ?></td>
-                <td><?= $task->getEmail() ?></td>
-                <td><?= $task->getText() ?></td>
-                <td><?= Tasks::getStatusList()[$task->getStatus()] ?></td>
-                <td><?= date('d.m.Y (H:i:s)', $task->getCreated_at()) ?></td>
+                <td><?= htmlspecialchars($task->getId(), ENT_QUOTES, 'UTF-8') ?></td>
+                <td><?= htmlspecialchars($task->getName(), ENT_QUOTES, 'UTF-8') ?></td>
+                <td><?= htmlspecialchars($task->getEmail(), ENT_QUOTES, 'UTF-8') ?></td>
+                <td><?= htmlspecialchars($task->getText(), ENT_QUOTES, 'UTF-8') ?></td>
+                <td><?= htmlspecialchars(Tasks::getStatusList()[$task->getStatus()], ENT_QUOTES, 'UTF-8') ?></td>
+                <td><?= htmlspecialchars(date('d.m.Y (H:i:s)', $task->getCreated_at()), ENT_QUOTES, 'UTF-8') ?></td>
             </tr>
         <?php endforeach; ?>
         <tr>
             <td></td>
             <td>
                 <label>
-                    <input type="text" name="name" value="<?= $post['name'] ?>" class="form-control"/>
+                    <input type="text" name="name" value="<?= htmlspecialchars($post['name'] ?? '', ENT_QUOTES, 'UTF-8') ?>" class="form-control"/>
                 </label>
             </td>
             <td>
                 <label>
-                    <input type="text" name="email" value="<?= $post['email'] ?>" class="form-control"/>
+                    <input type="text" name="email" value="<?= htmlspecialchars($post['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>" class="form-control"/>
                 </label>
             </td>
             <td>
                 <label>
-                    <textarea name="text" cols="5" rows="1" class="form-control"><?= $post['text'] ?></textarea>
+                    <textarea name="text" cols="5" rows="1" class="form-control"><?= htmlspecialchars($post['text'] ?? '', ENT_QUOTES, 'UTF-8') ?></textarea>
                 </label>
             </td>
             <td></td>

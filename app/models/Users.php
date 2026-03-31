@@ -65,7 +65,7 @@ class Users extends Model {
      * @param string $password
      */
     public function setPassword(string $password) {
-        $this->password = $password;
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
 
     /**
@@ -74,14 +74,18 @@ class Users extends Model {
      * @param string $password Password
      * @return Users|null
      */
-    static function signIn(string $login, string $password): Users {
-        if ($user = Users::findOneBy(['login' => $login, 'password' => md5($password)])) {
+    static function signIn(string $login, string $password): ?Users {
+        $user = Users::findOneBy(['login' => $login]);
+        
+        if ($user && password_verify($password, $user->getPassword())) {
             $_SESSION['user'] = [
+                'id' => $user->getId(),
                 'login' => $login,
             ];
+            return $user;
         }
-
-        return $user;
+        
+        return null;
     }
 
     /**

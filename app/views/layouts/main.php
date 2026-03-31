@@ -38,7 +38,7 @@ $current_controller = app\App::$components['routes']['controller'];
                 </li>
             </ul>
             <?php if (Users::isAuth()): ?>
-                <div><?= $_SESSION['user']['login'] ?> (
+                <div><?= htmlspecialchars($_SESSION['user']['login'], ENT_QUOTES, 'UTF-8') ?> (
                     <!--suppress HtmlUnknownTarget --><a href="/admin/logout">выйти</a>)
                 </div>
             <?php endif; ?>
