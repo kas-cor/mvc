@@ -2,7 +2,8 @@
 
 namespace app\core;
 
-use Doctrine\ORM\{EntityManager, ORMException};
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Tools\Setup;
 
 /**
@@ -30,8 +31,14 @@ class Db {
      * @throws ORMException
      */
     public function init(): array {
-        $isDevMode = true;
-        $config = Setup::createAnnotationMetadataConfiguration([__DIR__ . "/../models"], $isDevMode);
+        // Get dev mode from environment or config
+        $isDevMode = (bool)env('DEV_MODE', true);
+        
+        // Use modern attribute metadata configuration instead of annotations
+        $config = Setup::createAttributeMetadataConfiguration(
+            [__DIR__ . "/../models"], 
+            $isDevMode
+        );
 
         $conn = [
             'driver' => 'pdo_mysql',
@@ -39,6 +46,7 @@ class Db {
             'dbname' => $this->params['config']['dbname'],
             'user' => $this->params['config']['username'],
             'password' => $this->params['config']['password'],
+            'charset' => 'utf8mb4',
         ];
 
         return [
