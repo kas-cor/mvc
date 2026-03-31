@@ -4,9 +4,10 @@
  */
 ?>
 <form action="" method="POST">
+    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?? '' ?>">
     <div class="form-group">
         <label for="login">Логин</label>
-        <input type="text" name="login" value="<?= $post['login'] ?>" class="form-control" id="login" placeholder="Введите логин"/>
+        <input type="text" name="login" value="<?= htmlspecialchars($post['login'] ?? '', ENT_QUOTES, 'UTF-8') ?>" class="form-control" id="login" placeholder="Введите логин"/>
     </div>
     <div class="form-group">
         <label for="password">Пароль</label>
