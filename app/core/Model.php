@@ -2,9 +2,8 @@
 
 namespace app\core;
 
-use app\App;
 use Doctrine\ORM\Tools\Pagination\Paginator;
-use phpDocumentor\Reflection\Types\Integer;
+use src\Exception\SecurityException;
 
 /**
  * Class Model
@@ -14,6 +13,8 @@ class Model {
 
     /**
      * Save model
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function save() {
         $entityManager = self::getEm();
@@ -87,28 +88,44 @@ class Model {
     }
 
     /**
-     * Pagination
+     * Pagination with parameterized queries (SQL Injection fix)
      * @param array $criteria
      * @param array $order
      * @param integer $page
      * @return array
+     * @throws SecurityException
      * @throws \Exception
      */
     static function pagination(array $criteria = [], array $order = [], $page = 1): array {
         $repo = self::getEm()->getRepository(get_called_class());
         $query = $repo->createQueryBuilder('t');
+        
+        // Using parameterized queries to prevent SQL Injection
+        $paramIndex = 0;
         foreach ($criteria as $column => $value) {
-            $query->where($query->expr()->eq('t.' . $column, $value));
+            // Validate column name to prevent SQL injection via column names
+            if (!preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/', $column)) {
+                throw new SecurityException("Invalid column name: {$column}");
+            }
+            $paramName = 'param_' . $paramIndex++;
+            $query->andWhere('t.' . $column . ' = :' . $paramName)
+                  ->setParameter($paramName, $value);
         }
+        
         foreach ($order as $column => $o) {
-            $query->addOrderBy('t.' . $column, $o);
+            // Validate column name and order direction
+            if (!preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/', $column)) {
+                throw new SecurityException("Invalid column name: {$column}");
+            }
+            $direction = strtoupper($o) === 'DESC' ? 'DESC' : 'ASC';
+            $query->addOrderBy('t.' . $column, $direction);
         }
 
         $paginator = new Paginator($query);
         $total = $paginator->count();
         $length = (int)App::$components['db']['pagination'];
-        $page = $page < 1 ? 1 : $page;
-        $paginator->getQuery()->setFirstResult(((int)$page - 1) * $length)->setMaxResults($length);
+        $page = $page < 1 ? 1 : (int)$page;
+        $paginator->getQuery()->setFirstResult(($page - 1) * $length)->setMaxResults($length);
 
         return [
             'items' => $paginator->getIterator()->getArrayCopy(),

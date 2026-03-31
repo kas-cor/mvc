@@ -6,6 +6,7 @@ use app\App;
 use app\core\Controller;
 use app\models\Tasks;
 use app\widgets\{Alerts, Sorting};
+use src\Validator\Validator;
 use ErrorException;
 
 /**
@@ -41,19 +42,19 @@ class MainController extends Controller {
                 ]);
             }
             
-            if (empty($post['name'])) {
-                Alerts::addFlash(Alerts::TYPE_WARNING, 'Не введено имя');
-            }
-            if (empty($post['email'])) {
-                Alerts::addFlash(Alerts::TYPE_WARNING, 'Не введен e-mail');
-            } else {
-                if (!filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
-                    Alerts::addFlash(Alerts::TYPE_WARNING, 'Введен не верный e-mail');
+            // Validate input using Validator
+            $validator = new Validator();
+            $validator->required($post['name'], 'name', 'Не введено имя');
+            $validator->required($post['email'], 'email', 'Не введен e-mail');
+            $validator->email($post['email'], 'email', 'Введен не верный e-mail');
+            $validator->required($post['text'], 'text', 'Не введен текст');
+            
+            if (!$validator->isValid()) {
+                foreach ($validator->getErrors() as $error) {
+                    Alerts::addFlash(Alerts::TYPE_WARNING, $error);
                 }
             }
-            if (empty($post['text'])) {
-                Alerts::addFlash(Alerts::TYPE_WARNING, 'Не введен текст');
-            }
+            
             if (!Alerts::isPresent()) {
                 $task = new Tasks();
                 $task->setName(htmlspecialchars($post['name'], ENT_QUOTES, 'UTF-8'));

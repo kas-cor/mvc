@@ -6,6 +6,7 @@ use app\App;
 use app\core\Controller;
 use app\models\{Tasks, Users};
 use app\widgets\{Alerts, Sorting};
+use src\Validator\Validator;
 use ErrorException;
 use Exception;
 
@@ -54,29 +55,27 @@ class AdminController extends Controller {
 
             foreach ($entry as $id => $value) {
                 $errors = false;
-                if (empty($value['name'])) {
-                    Alerts::addFlash(Alerts::TYPE_WARNING, '(' . $id . ') Не введено имя');
-                    $errors = true;
-                }
-                if (empty($value['email'])) {
-                    Alerts::addFlash(Alerts::TYPE_WARNING, '(' . $id . ') Не введен e-mail');
-                    $errors = true;
-                } else {
-                    if (!filter_var($value['email'], FILTER_VALIDATE_EMAIL)) {
-                        Alerts::addFlash(Alerts::TYPE_WARNING, '(' . $id . ') Введен не верный e-mail');
-                        $errors = true;
+                
+                // Use Validator for validation
+                $validator = new Validator();
+                $validator->required($value['name'], 'name', '(' . $id . ') Не введено имя');
+                $validator->required($value['email'], 'email', '(' . $id . ') Не введен e-mail');
+                $validator->email($value['email'], 'email', '(' . $id . ') Введен не верный e-mail');
+                $validator->required($value['text'], 'text', '(' . $id . ') Не введен текст');
+                
+                if (!$validator->isValid()) {
+                    foreach ($validator->getErrors() as $error) {
+                        Alerts::addFlash(Alerts::TYPE_WARNING, $error);
                     }
-                }
-                if (empty($value['text'])) {
-                    Alerts::addFlash(Alerts::TYPE_WARNING, '(' . $id . ') Не введен текст');
                     $errors = true;
                 }
+                
                 if (!$errors) {
                     $task = Tasks::findOne($id);
-                    $task->setName($value['name']);
-                    $task->setEmail($value['email']);
-                    $task->setText($value['text']);
-                    $task->setStatus($value['status']);
+                    $task->setName(htmlspecialchars($value['name'], ENT_QUOTES, 'UTF-8'));
+                    $task->setEmail(htmlspecialchars($value['email'], ENT_QUOTES, 'UTF-8'));
+                    $task->setText(htmlspecialchars($value['text'], ENT_QUOTES, 'UTF-8'));
+                    $task->setStatus((int)$value['status']);
                     $task->save();
                 }
             }
@@ -117,12 +116,17 @@ class AdminController extends Controller {
                 ]);
             }
             
-            if (empty($post['login'])) {
-                Alerts::addFlash(Alerts::TYPE_WARNING, 'Введите логин');
+            // Validate input
+            $validator = new Validator();
+            $validator->required($post['login'], 'login', 'Введите логин');
+            $validator->required($post['password'], 'password', 'Введите пароль');
+            
+            if (!$validator->isValid()) {
+                foreach ($validator->getErrors() as $error) {
+                    Alerts::addFlash(Alerts::TYPE_WARNING, $error);
+                }
             }
-            if (empty($post['password'])) {
-                Alerts::addFlash(Alerts::TYPE_WARNING, 'Введите пароль');
-            }
+            
             if (!Alerts::isPresent()) {
                 if (!Users::signIn($post['login'], $post['password'])) {
                     Alerts::addFlash(Alerts::TYPE_WARNING, 'Не верный логин или пароль');
@@ -145,6 +149,8 @@ class AdminController extends Controller {
      * Logout action
      */
     public function logoutAction() {
+        // Regenerate CSRF token on logout to prevent CSRF attacks
+        unset($_SESSION['csrf_token']);
         Users::logOut();
 
         return $this->redirect('/');
