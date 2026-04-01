@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mvc_app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+      - ./cache:/var/www/html/cache
+      - ./logs:/var/www/html/logs
+    networks:
+      - mvc_network
+    depends_on:
+      - db
+      - redis
+    environment:
+      - APP_ENV=production
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_NAME=mvc_db
+      - DB_USER=mvc_user
+      - DB_PASSWORD=mvc_password
+      - REDIS_HOST=redis
+
+  nginx:
+    image: nginx:alpine
+    container_name: mvc_nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www/html
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - mvc_network
+    depends_on:
+      - app
+
+  db:
+    image: mysql:8.0
+    container_name: mvc_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: mvc_db
+      MYSQL_USER: mvc_user
+      MYSQL_PASSWORD: mvc_password
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - mvc_network
+    ports:
+      - "3306:3306"
+
+  redis:
+    image: redis:alpine
+    container_name: mvc_redis
+    restart: unless-stopped
+    networks:
+      - mvc_network
+    ports:
+      - "6379:6379"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: mvc_phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: mvc_user
+      PMA_PASSWORD: mvc_password
+    networks:
+      - mvc_network
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+networks:
+  mvc_network:
+    driver: bridge
+
+volumes:
+  db_data:
+    driver: local
